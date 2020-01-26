@@ -19,6 +19,6 @@ use Illuminate\Support\Str;
 $factory->define(\TopDigital\Content\Models\Post::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence,
-        'content' => $faker->paragraphs(),
+        'content' => $faker->paragraphs(3, true),
     ];
 });
