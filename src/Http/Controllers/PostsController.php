@@ -2,6 +2,7 @@
 
 namespace TopDigital\Content\Http\Controllers;
 
+use TopDigital\Auth\Http\Controllers\BaseController;
 use TopDigital\Content\Http\Requests\UpdateContentRequest;
 use TopDigital\Content\Http\Resources\PostCollection;
 use TopDigital\Content\Http\Resources\PostResource;

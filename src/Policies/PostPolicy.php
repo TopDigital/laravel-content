@@ -3,6 +3,7 @@
 namespace TopDigital\Content\Policies;
 
 use TopDigital\Content\Models\Post;
+use TopDigital\Auth\Models\User;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -10,34 +11,34 @@ class PostPolicy
 {
     use HandlesAuthorization;
 
-    public function index(?Post $post) : bool
+    public function index(?User $user) : bool
     {
-        return $this->checkMainPolicy($post);
+        return $this->checkMainPolicy($user);
     }
 
-    public function view(?Post $post) : bool
+    public function view(?User $user) : bool
     {
-        return $this->checkMainPolicy($post);
+        return $this->checkMainPolicy($user);
     }
 
-    public function create(?Post $post) : bool
+    public function create(?User $user) : bool
     {
-        return $this->checkMainPolicy($post);
+        return $this->checkMainPolicy($user);
     }
 
-    public function update(?Post $post, Post $updatedContent) : bool
+    public function update(?User $user, Post $updatedContent) : bool
     {
-        return $this->checkMainPolicy($post);
+        return $this->checkMainPolicy($user);
     }
 
-    public function delete(?Post $post, Post $deletedContent) : bool
+    public function delete(?User $user, Post $deletedContent) : bool
     {
-        return $this->checkMainPolicy($post);
+        return $this->checkMainPolicy($user);
     }
 
-    public function checkMainPolicy(?Post $post) : bool
+    public function checkMainPolicy(?User $user) : bool
     {
-//        return !!$post && $post->isAdmin();
+//        return !!$user && $user->isAdmin();
         return true;
     }
 }
