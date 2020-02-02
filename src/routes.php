@@ -6,5 +6,5 @@ Route::group([
     'prefix' => 'api/content'
 ], function () {
 
-    Route::resource('posts', 'PostsController')->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('posts', 'PostsController')->only(['index', 'show', 'store', 'update', 'destroy']);
 });

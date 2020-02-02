@@ -26,12 +26,12 @@ class PostPolicy
         return $this->checkMainPolicy($user);
     }
 
-    public function update(?User $user, Post $updatedContent) : bool
+    public function update(?User $user, Post $updatedPost) : bool
     {
         return $this->checkMainPolicy($user);
     }
 
-    public function delete(?User $user, Post $deletedContent) : bool
+    public function delete(?User $user, Post $deletedPost) : bool
     {
         return $this->checkMainPolicy($user);
     }

@@ -27,6 +27,17 @@ class PostsController extends BaseController
     }
 
     /**
+     * @param Post $post
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Post $post)
+    {
+        return response(
+            PostResource::make($post)
+        );
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  UpdateContentRequest  $request
