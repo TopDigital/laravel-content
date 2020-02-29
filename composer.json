@@ -32,7 +32,8 @@
     },
     "autoload": {
         "psr-4": {
-            "TopDigital\\Content\\": "src/"
+            "TopDigital\\Content\\": "src/",
+            "TopDigital\\Content\\Seeders\\": "database/seeds/"
         }
     }
 }

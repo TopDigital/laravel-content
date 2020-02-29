@@ -4,17 +4,17 @@ namespace TopDigital\Content\Http\Controllers;
 
 use TopDigital\Auth\Http\Controllers\BaseController;
 use TopDigital\Content\Http\Requests\UpdateContentRequest;
-use TopDigital\Content\Http\Resources\PostCollection;
-use TopDigital\Content\Http\Resources\PostResource;
-use TopDigital\Content\Models\Post;
+use TopDigital\Content\Http\Resources\SectionCollection;
+use TopDigital\Content\Http\Resources\SectionResource;
+use TopDigital\Content\Models\Section;
 
-class PostsController extends BaseController
+class SectionsController extends BaseController
 {
     public function __construct()
     {
         \Auth::shouldUse('api');
 
-        $this->authorizeResource(Post::class);
+        $this->authorizeResource(Section::class);
     }
 
     /**
@@ -23,18 +23,7 @@ class PostsController extends BaseController
      */
     public function index()
     {
-        return new PostCollection(Post::all());
-    }
-
-    /**
-     * @param Post $post
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Post $post)
-    {
-        return response(
-            PostResource::make($post)
-        );
+        return new SectionCollection(Section::all());
     }
 
     /**
@@ -45,13 +34,12 @@ class PostsController extends BaseController
      */
     public function store(UpdateContentRequest $request)
     {
-        $post = new Post();
-        $post->author_id = \Auth::id();
-        $post->fill($request->validated());
-        $post->save();
+        $section = new Section();
+        $section->fill($request->validated());
+        $section->save();
 
         return response(
-            PostResource::make($post)
+            SectionResource::make($section)
         );
     }
 
@@ -59,29 +47,29 @@ class PostsController extends BaseController
      * Update the specified resource in storage.
      *
      * @param  UpdateContentRequest  $request
-     * @param  \TopDigital\Content\Models\Post  $post
+     * @param  \TopDigital\Content\Models\Section  $section
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateContentRequest $request, Post $post)
+    public function update(UpdateContentRequest $request, Section $section)
     {
-        $post->update($request->validated());
-        $post->refresh();
+        $section->update($request->validated());
+        $section->refresh();
 
         return response(
-            PostResource::make($post)
+            SectionResource::make($section)
         );
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \TopDigital\Content\Models\Post  $post
+     * @param  \TopDigital\Content\Models\Section  $section
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Section $section)
     {
         try {
-            $post->delete();
+            $section->delete();
         }
         catch(\Exception $e) {
             return response()->json(['success' => false]);

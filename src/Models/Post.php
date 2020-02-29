@@ -15,7 +15,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'content',
+        'section_id', 'slug', 'title', 'content', 'published_at',
     ];
 
     /**
@@ -25,5 +25,9 @@ class Post extends Model
      */
     protected $hidden = [
         'content',
+    ];
+
+    protected $casts = [
+        'published_at' => 'datetime:d.m.Y',
     ];
 }

@@ -13,32 +13,26 @@ class PostPolicy
 
     public function index(?User $user) : bool
     {
-        return $this->checkMainPolicy($user);
+        return true;
     }
 
     public function view(?User $user) : bool
     {
-        return $this->checkMainPolicy($user);
+        return true;
     }
 
     public function create(?User $user) : bool
     {
-        return $this->checkMainPolicy($user);
+        return $user->can('create post');
     }
 
     public function update(?User $user, Post $updatedPost) : bool
     {
-        return $this->checkMainPolicy($user);
+        return $user->can('update post') || $user->getAuthIdentifier() === $updatedPost->author_id;
     }
 
     public function delete(?User $user, Post $deletedPost) : bool
     {
-        return $this->checkMainPolicy($user);
-    }
-
-    public function checkMainPolicy(?User $user) : bool
-    {
-//        return !!$user && $user->isAdmin();
-        return true;
+        return $user->can('delete post') || $user->getAuthIdentifier() === $deletedPost->author_id;
     }
 }
