@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->integer('section_id')->nullable();
             $table->string('slug');
             $table->string('title');
+            $table->string('preview_url')->nullable();
             $table->longText('content');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();

@@ -4,6 +4,7 @@ namespace TopDigital\Content\Http\Controllers;
 
 use TopDigital\Auth\Http\Controllers\BaseController;
 use TopDigital\Content\Http\Requests\UpdateContentRequest;
+use TopDigital\Content\Http\Requests\UploadPreviewRequest;
 use TopDigital\Content\Http\Resources\PostCollection;
 use TopDigital\Content\Http\Resources\PostResource;
 use TopDigital\Content\Models\Post;
@@ -56,6 +57,33 @@ class PostsController extends BaseController
     }
 
     /**
+     * @param UploadPreviewRequest $request
+     * @param Post $post
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
+     */
+    public function storePreview(UploadPreviewRequest $request, Post $post)
+    {
+        if( $request->validated()){
+            $media = $post
+                ->addMediaFromRequest('preview')
+                ->withCustomProperties(['mime-type' => 'image/jpeg'])
+                ->usingFileName($post->slug .'.jpg')
+                ->toMediaCollection('preview')
+            ;
+
+            $post->preview_url = $media->getUrl();
+            $post->save();
+
+            return response()->json(['url' => $post->preview_url]);
+        }
+
+        return response()->json(['error' => 'MIME type is not acccepted']);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  UpdateContentRequest  $request
@@ -97,6 +125,7 @@ class PostsController extends BaseController
     {
         return array_merge(parent::resourceAbilityMap(), [
             'index' => 'index',
+            'storePreview' => 'update',
         ]);
     }
 }

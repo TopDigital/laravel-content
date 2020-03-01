@@ -4,11 +4,12 @@ namespace TopDigital\Content\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Post extends Model
+class Post extends Model implements HasMedia
 {
-    use SoftDeletes;
-
+    use HasMediaTrait, SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
