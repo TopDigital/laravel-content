@@ -16,15 +16,8 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(\TopDigital\Content\Models\Post::class, function (Faker $faker) {
-    $user = \TopDigital\Auth\Models\User::all()->random();
-    $section = \TopDigital\Content\Models\Section::all()->random();
-
+$factory->define(\TopDigital\Content\Models\Section::class, function (Faker $faker) {
     return [
-        'author_id' => $user->id,
-        'section_id' => $section->id,
-        'slug' => $faker->slug,
-        'title' => $faker->sentence,
-        'content' => $faker->paragraphs(3, true),
+        'name' => $faker->domainName,
     ];
 });
