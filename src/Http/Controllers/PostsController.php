@@ -46,8 +46,8 @@ class PostsController extends BaseController
     public function store(UpdateContentRequest $request)
     {
         $post = new Post();
-        $post->author_id = \Auth::id();
         $post->fill($request->validated());
+        $post->author_id = \Auth::id();
         $post->save();
 
         return response(

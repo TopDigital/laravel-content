@@ -7,6 +7,6 @@ Route::group([
 ], function () {
 
     Route::resource('posts', 'PostsController')->only(['index', 'show', 'store', 'update', 'destroy']);
-    Route::resource('sections', 'PostsController')->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('sections', 'SectionsController')->only(['index', 'store', 'update', 'destroy']);
 });
 

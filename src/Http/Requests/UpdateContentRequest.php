@@ -18,7 +18,7 @@ class UpdateContentRequest extends FormRequest
             'slug' => ['required', 'string'],
             'title' => ['required', 'string'],
             'content' => ['required', 'string'],
-            'published_at' => ['string', 'date_format:d.m.Y'],
+            'published_at' => ['numeric'],
         ];
     }
 }
