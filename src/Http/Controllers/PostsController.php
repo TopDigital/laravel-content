@@ -73,11 +73,12 @@ class PostsController extends BaseController
                 ->usingFileName($post->slug .'.jpg')
                 ->toMediaCollection('preview')
             ;
+            $post->clearMediaCollectionExcept('preview', $media);
 
             $post->preview_url = $media->getUrl();
             $post->save();
 
-            return response()->json(['url' => $post->preview_url]);
+            return response()->json(['url' => config('app.url') . $post->preview_url]);
         }
 
         return response()->json(['error' => 'MIME type is not acccepted']);
