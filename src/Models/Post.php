@@ -28,6 +28,6 @@ class Post extends Model
     ];
 
     protected $casts = [
-        'published_at' => 'timestamp',
+        'published_at' => 'datetime',
     ];
 }
