@@ -14,7 +14,7 @@ class PostResource extends JsonResource
             'slug' => $this->slug,
             'title' => $this->title,
             'content' => $this->content,
-            'preview_url' => config('app.url') . $this->preview_url,
+            'preview_url' => $this->preview_url ? config('app.url') . $this->preview_url : null,
             'published_at' => $this->published_at ? $this->published_at->format('U') : null,
             'created_at' => $this->created_at->format('U'),
             'updated_at' => $this->updated_at->format('U'),
