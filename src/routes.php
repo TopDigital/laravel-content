@@ -2,7 +2,7 @@
 
 Route::group([
     'namespace' => 'TopDigital\Content\Http\Controllers',
-    'middleware' => ['api', 'cors', 'auth:api'],
+    'middleware' => ['api', 'auth:api'],
     'prefix' => 'api/content'
 ], function () {
 
