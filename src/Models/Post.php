@@ -28,7 +28,9 @@ class Post extends Model implements HasMedia
         'content',
     ];
 
-    protected $casts = [
-        'published_at' => 'datetime',
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'published_at',
     ];
 }

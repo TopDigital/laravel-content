@@ -15,10 +15,10 @@ class PostResource extends JsonResource
             'title' => $this->title,
             'content' => $this->content,
             'preview_url' => $this->preview_url ? config('app.url') . $this->preview_url : null,
-            'published_at' => $this->published_at ? $this->published_at->format('U') : null,
-            'created_at' => $this->created_at->format('U'),
-            'updated_at' => $this->updated_at->format('U'),
-            'deleted_at' => $this->deleted_at ? $this->deleted_at->format('U') : null,
+            'published_at' => $this->published_at,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'deleted_at' => $this->deleted_at,
         ];
     }
 }
